@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"regexp"
 
@@ -16,17 +15,17 @@ func insertUser(username, password string) (int, bool) {
 	sqlQuery := "INSERT INTO Users(username, password) VALUES(?, ?)"
 	stmt, err := db.Prepare(sqlQuery)
 	if err != nil {
-		log.Println(fmt.Sprintf("db.Prepare( %v ) failed with %v", sqlQuery, err))
+		fmt.Println(fmt.Sprintf("db.Prepare( %v ) failed with %v", sqlQuery, err))
 		return 0, true
 	}
 	res, err := stmt.Exec(username, password)
 	if err != nil {
-		log.Println(fmt.Sprintf("stmt.Exec for '%v' failed with %v", sqlQuery, err))
+		fmt.Println(fmt.Sprintf("stmt.Exec for '%v' failed with %v", sqlQuery, err))
 		return 0, true
 	}
 	rowCnt, err := res.RowsAffected()
 	if err != nil {
-		log.Println(fmt.Sprintf("result.RowsAffected() for '%v' failed with %v", sqlQuery, err))
+		fmt.Println(fmt.Sprintf("result.RowsAffected() for '%v' failed with %v", sqlQuery, err))
 		return 0, true
 	}
 	return int(rowCnt), false
@@ -44,6 +43,13 @@ func userExists(username string) (bool, bool) {
 	}
 	return exists, errBool
 }
+
+/*
+	Checks the username and password for length and strength.
+	Returns
+		(bool) whether the username and password are strong
+		(string) the problem with them
+*/
 
 func checkUsernameAndPassword(username, password string) (bool, string) {
 	if len(username) < 8 {
@@ -88,6 +94,11 @@ func checkUsernameAndPassword(username, password string) (bool, string) {
 //Tries to make an account with the given username and password.
 //Will return an http internal server error
 //or json.
+//json will contain:
+//    error (bool)
+//    createdAccount (bool)
+//    message (string)
+//TODO remove error -- only send back createdAccount and message
 func CreateAccount(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

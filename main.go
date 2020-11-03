@@ -11,6 +11,10 @@ import (
 	"github.com/gorilla/sessions"
 )
 
+/*
+	This function encodes the given map as a json string and
+	writes it to the given ResponseWriter
+*/
 func sendResponse(w http.ResponseWriter, responseData map[string]interface{}) {
 
 	responseString, err2 := json.Marshal(responseData)
@@ -24,10 +28,20 @@ func sendResponse(w http.ResponseWriter, responseData map[string]interface{}) {
 	w.Write(responseString)
 }
 
+/*
+	Global variables:
+	store -- stores the cookie and session data
+	db -- the interface to the database
+*/
+
 var store = sessions.NewCookieStore([]byte("this is not secure"))
 
 var db *sql.DB
 
+/*
+	-Initialize the database interface
+	-Route requests
+*/
 func main() {
 	var err error
 	db, err = sql.Open("mysql",

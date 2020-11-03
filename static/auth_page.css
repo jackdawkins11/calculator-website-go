@@ -1,0 +1,108 @@
+
+.auth-page {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    font-family: 'Source Sans Pro', sans-serif ;
+
+    background: rgb(224, 224, 224);
+}
+
+.auth-box{
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px 0px;
+
+    padding: 25px 50px;
+
+    background: rgb(16, 57, 73);
+
+    border: 1px solid gray;
+
+    font-size: 1.2rem;
+}
+
+
+.tab-bar{
+
+    margin-top: 100px;
+
+    display: flex;
+
+    margin-bottom: 20px;
+}
+
+.tab{
+
+    margin: 0px 5px;
+
+    font-size: 1.5rem;
+
+    padding: 2px;
+
+    cursor: pointer;
+}
+
+.tab-active{
+    color: white;
+    border-bottom: 2px solid rgb(57, 106, 212);
+}
+
+.tab-inactive{
+    color: rgb(145, 144, 144);
+}
+
+.auth-content{
+    display: flex;
+    flex-direction: column;
+    padding: 3px;
+    width: 350px;
+}
+
+.auth-content-label{
+    color: gray;
+    font-size: 0.9rem;
+}
+
+.auth-content-input:focus{
+    outline: none;
+}
+
+.auth-content-input{
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted gray;
+    background: inherit;
+    color: white;
+}
+
+.message-red{
+    color: rgb(170, 38, 38);
+}
+
+.message-green{
+    color: rgb(8, 122, 8);
+}
+
+.password-strength-message{
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.auth-content-button{
+    text-align: center;
+
+    padding: 5px;
+
+    border-radius: 20px;
+
+    background: rgb(57, 106, 212);
+
+    cursor: pointer;
+
+    color: white;
+}

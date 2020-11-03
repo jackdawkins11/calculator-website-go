@@ -1,0 +1,64 @@
+
+.message-box{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    height: 100%;
+    overflow-y:scroll;
+}
+
+.message {
+    display: flex;
+    color: rgb(43, 43, 43);
+}
+
+.message.even{
+    background-color: rgb(243, 243, 243);
+}
+
+.message.odd{
+    background-color: white;
+}
+
+.message-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.message-avatar {
+    font-size: 3rem;
+}
+
+.message-right{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-header{
+    display:flex;
+    align-items: flex-end;
+    white-space: nowrap;
+    padding: 5px 5px 5px 5px;
+}
+
+.message-name{
+    font-size: 1.2rem;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.message-time{
+    font-size: 0.9rem;
+    font-weight: lighter;
+    color: rgb(161, 161, 161);
+}
+
+.message-content{
+    padding: 2px 5px 5px 5px;
+    font-size: 1rem;
+}

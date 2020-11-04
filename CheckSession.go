@@ -31,5 +31,5 @@ func CheckSession(w http.ResponseWriter, r *http.Request) {
 		"hasSession": primaryKey != nil,
 	}
 
-	sendResponse(w, responseData)
+	writeResponse(w, responseData)
 }

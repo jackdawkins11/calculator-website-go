@@ -116,7 +116,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 			"createdAccount": false,
 			"message":        message,
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 		return
 	}
 
@@ -128,7 +128,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 			"createdAccount": false,
 			"message":        "That username is taken",
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 		return
 	} else if errBool {
 		responseData := map[string]interface{}{
@@ -136,7 +136,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 			"createdAccount": false,
 			"message":        "",
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 	}
 
 	rowCnt, errBool := insertUser(username, password)
@@ -147,7 +147,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 			"createdAccount": false,
 			"message":        "Error inserting into database",
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 		return
 	} else if !errBool && rowCnt != 1 {
 		responseData := map[string]interface{}{
@@ -155,13 +155,13 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 			"createdAccount": false,
 			"message":        "Error inserting into db: number of affected rows wrong",
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 	} else if !errBool && rowCnt == 1 {
 		responseData := map[string]interface{}{
 			"error":          false,
 			"createdAccount": true,
 			"message":        "",
 		}
-		sendResponse(w, responseData)
+		writeResponse(w, responseData)
 	}
 }

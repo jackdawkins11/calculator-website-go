@@ -55,5 +55,5 @@ func AddCalculation(w http.ResponseWriter, r *http.Request) {
 	responseData := map[string]interface{}{
 		"error": errBool || rowCnt != 1,
 	}
-	sendResponse(w, responseData)
+	writeResponse(w, responseData)
 }

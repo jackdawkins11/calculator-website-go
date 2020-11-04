@@ -156,7 +156,7 @@ class Calculator extends React.Component {
     calculation.append("y", y);
     calculation.append("val", val);
     calculation.append("date", date);
-    fetch("../backend/addCalculation.php", {
+    fetch("/backend/AddCalculation", {
       method: "POST",
       body: calculation
     }).then((response) => response.json())

@@ -86,5 +86,5 @@ func StartSession(w http.ResponseWriter, r *http.Request) {
 		"hasSession": isAuthenticated,
 	}
 
-	sendResponse(w, responseData)
+	writeResponse(w, responseData)
 }

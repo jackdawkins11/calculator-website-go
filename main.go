@@ -15,7 +15,7 @@ import (
 	This function encodes the given map as a json string and
 	writes it to the given ResponseWriter
 */
-func sendResponse(w http.ResponseWriter, responseData map[string]interface{}) {
+func writeResponse(w http.ResponseWriter, responseData map[string]interface{}) {
 
 	responseString, err2 := json.Marshal(responseData)
 
@@ -61,6 +61,7 @@ func main() {
 	http.HandleFunc("/backend/CheckSession", CheckSession)
 	http.HandleFunc("/backend/EndSession", EndSession)
 	http.HandleFunc("/backend/AddCalculation", AddCalculation)
+	http.HandleFunc("/backend/getLast10Calculations", getLast10Calculations)
 
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)

@@ -45,7 +45,7 @@ var db *sql.DB
 func main() {
 	var err error
 	db, err = sql.Open("mysql",
-		"jack:jack@tcp(127.0.0.1:3306)/test")
+		"jack:jack@tcp(127.0.0.1:3306)/Calculator2")
 	if err != nil {
 		fmt.Println("Couldn't create database object")
 		return

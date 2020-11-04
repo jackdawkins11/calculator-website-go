@@ -29,7 +29,7 @@ class App extends React.Component{
         }
     }
     checkSession(){
-        fetch( "../backend/checkSession.php" )
+        fetch( "/backend/CheckSession" )
             .then( (response) => response.json() )
             .then( (result) => {
                 this.setState({
@@ -40,7 +40,7 @@ class App extends React.Component{
             });
     }
     signOut(){
-        fetch( "../backend/endSession.php" )
+        fetch( "/backend/EndSession" )
             .then( response => {
                 this.checkSession();
             }).catch( reason => {

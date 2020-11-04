@@ -124,7 +124,7 @@ class SignUp extends React.Component {
         let credentials = new URLSearchParams();
         credentials.append("username", username);
         credentials.append("password", password);
-        fetch("../backend/createAccount.php", {
+        fetch("/backend/CreateAccount", {
             method: "POST",
             body: credentials
         }).then((response) => response.json())

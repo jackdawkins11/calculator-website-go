@@ -164,5 +164,4 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 		}
 		sendResponse(w, responseData)
 	}
-
 }

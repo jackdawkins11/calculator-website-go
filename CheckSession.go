@@ -5,6 +5,15 @@ import (
 	"net/http"
 )
 
+/*
+	Handles the request for checking if there is a session.
+	Checks if the session variable PrimaryKey is set. Returns
+	json response containing:
+		hasSession (bool)
+	Will return an internal server error in certain error
+	situations
+*/
+
 func CheckSession(w http.ResponseWriter, r *http.Request) {
 	// Get a session. Get() always returns a session, even if empty.
 	session, err := store.Get(r, "session-name")
@@ -13,7 +22,7 @@ func CheckSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Read the signed in session variable.
+	// Read the session variable.
 	primaryKey := session.Values["PrimaryKey"]
 
 	fmt.Println(fmt.Sprintf("Detected session -- PrimaryKey=%v", primaryKey))

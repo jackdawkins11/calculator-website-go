@@ -60,6 +60,7 @@ func main() {
 	http.HandleFunc("/backend/CreateAccount", CreateAccount)
 	http.HandleFunc("/backend/CheckSession", CheckSession)
 	http.HandleFunc("/backend/EndSession", EndSession)
+	http.HandleFunc("/backend/AddCalculation", AddCalculation)
 
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)

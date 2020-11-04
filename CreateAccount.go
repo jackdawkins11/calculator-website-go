@@ -52,11 +52,11 @@ func userExists(username string) (bool, bool) {
 */
 
 func checkUsernameAndPassword(username, password string) (bool, string) {
-	if len(username) < 8 {
-		return false, "Username must be at least 8 characters long"
+	if len(username) < 1 {
+		return false, "Username must be at least 1 characters long"
 	}
-	if len(password) < 8 {
-		return false, "Password must be at least 8 characters long"
+	if len(password) < 10 {
+		return false, "Password must be at least 10 characters long"
 	}
 	matched, err := regexp.Match(`[0-9]`, []byte(password))
 	if err != nil {

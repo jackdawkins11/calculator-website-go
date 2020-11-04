@@ -7,6 +7,12 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+/*
+	Checks if a user with the given username and password
+	is in the database. Returns
+		(bool) whether the user is authenticated
+		(bool) whether there was an error accessing the db
+*/
 func authenticateUser(username, password string) (bool, bool) {
 	var isAuthenticated bool
 	err := db.QueryRow("SELECT IF(COUNT(*),'true','false') FROM Users WHERE username = ? AND password = ?", username, password).Scan(&isAuthenticated)
@@ -18,6 +24,12 @@ func authenticateUser(username, password string) (bool, bool) {
 	return isAuthenticated, errBool
 }
 
+/*
+	Gets the PrimaryKey of the given username. Returns:
+		(int) the primary key
+		(bool) whether there was an error accessing the primary key. this also gets set
+			when the username is invalid
+*/
 func getPrimaryKey(username string) (int, bool) {
 	primaryKey := -1
 	err := db.QueryRow("SELECT primaryKey FROM Users WHERE username = ?", username).Scan(&primaryKey)
@@ -28,6 +40,15 @@ func getPrimaryKey(username string) (int, bool) {
 	}
 	return primaryKey, errBool
 }
+
+/*
+	Handles the request to StartSession.
+	Requires username and password POST parameters in the request.
+	Returns json containing
+		error (bool)
+		hasSession (bool)
+	Will return an internal server error in certain situations
+*/
 
 func StartSession(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {

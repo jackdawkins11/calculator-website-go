@@ -11,6 +11,7 @@
 .homepage-top-bar{
     border-bottom: 2px solid black;
     background: rgb(16, 57, 73);
+    flex-grow: 1;
 }
 
 .sign-out-button{
@@ -36,4 +37,5 @@
 .homepage-main {
     display: flex;
     overflow-y: hidden;
+    flex-grow: 1;
 }

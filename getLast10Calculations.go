@@ -7,6 +7,13 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+/*
+	Finds the username associated with the given
+	primary key. Returns
+		username (string) the username
+		(bool) whether there was an error accessing the username, including
+			if it is an invalid primary key
+*/
 func getUsername(primaryKey int) (string, bool) {
 	username := ""
 	err := db.QueryRow("SELECT Username FROM Users WHERE PrimaryKey = ?", primaryKey).Scan(&username)
@@ -18,6 +25,13 @@ func getUsername(primaryKey int) (string, bool) {
 	return username, errBool
 }
 
+/*
+	Gets the most recent 10 calculations in the database.
+	Returns
+		([]map[string]interface{}) an array of maps. Each map is accessed with
+			the db field specified by a string and stores the data from the db.
+			This is nil if there was an error.
+*/
 func getCalculations() []map[string]interface{} {
 	stmt, err := db.Prepare("select X, Op, Y, Val, Date, UserKey from Calculations order by Date desc limit 10")
 	if err != nil {
@@ -58,6 +72,11 @@ func getCalculations() []map[string]interface{} {
 	return calculations
 }
 
+/*
+	For each map in the given slice of maps, it adds a Username field and
+	removes the UserKey field. Returns
+		(bool) whether there was an error
+*/
 func addUsernameToCalculations(calculations []map[string]interface{}) bool {
 	retErr := false
 	for i := 0; i < len(calculations); i++ {
@@ -68,11 +87,18 @@ func addUsernameToCalculations(calculations []map[string]interface{}) bool {
 		} else {
 			calculations[i]["Username"] = username
 		}
-		calculations[i]["userKey"] = nil
+		calculations[i]["UserKey"] = nil
 	}
 	return retErr
 }
 
+/*
+	Handles the request to getLast10Calculations.
+	Returns json containing
+		error (bool) whether there was an error
+		calculations ([]map[string]interface{}) array of maps. Each map's keys are a field
+			from the database and values are the values from the database
+*/
 func getLast10Calculations(w http.ResponseWriter, r *http.Request) {
 
 	calculations := getCalculations()

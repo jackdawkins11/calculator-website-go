@@ -30,6 +30,17 @@ func insertCalculation(x, op, y, val, date string, userKey int) (int, bool) {
 	return int(rowCnt), false
 }
 
+/*
+	Handles the request to AddCalculation.
+	Reads the following POST params:
+		x, op, y, val, date
+	and reads the primary key of the clients session
+	And inserts the specified calculation into the database.
+	Returns json containing
+		error (bool) whether there was an error inserting the calculation
+	Will return an internal server error in some situations.
+	TODO: return just json, no internal server error
+*/
 func AddCalculation(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

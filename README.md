@@ -2,7 +2,7 @@
 A webpage with a calculator and a list of recent calculations.
 
 ## Using it
-The site is running live here: http://18.189.13.31/frontend/
+The site is running live here: http://52.15.174.58/frontend
 Create an account, sign in, and then use the calculator and see recent calculations made by any of the users.
 
 ## Host it yourself

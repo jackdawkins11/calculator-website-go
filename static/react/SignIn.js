@@ -114,7 +114,7 @@ class SignIn extends React.Component {
         let credentials = new URLSearchParams();
         credentials.append("username", username);
         credentials.append("password", password);
-        fetch("/backend/StartSession", {
+        fetch("/CalculatorAPI/StartSession", {
             method: "POST",
             body: credentials
         }).then((response) => response.json())

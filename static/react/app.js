@@ -31,7 +31,7 @@ class App extends React.Component{
         }
     }
     checkSession(){
-        fetch( "/backend/CheckSession" )
+        fetch( "/CalculatorAPI/CheckSession" )
             .then( (response) => response.json() )
             .then( (result) => {
                 this.setState({
@@ -42,7 +42,7 @@ class App extends React.Component{
             });
     }
     signOut(){
-        fetch( "/backend/EndSession" )
+        fetch( "/CalculatorAPI/EndSession" )
             .then( response => {
                 this.checkSession();
             }).catch( reason => {

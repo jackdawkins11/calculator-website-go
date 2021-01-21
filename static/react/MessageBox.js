@@ -91,7 +91,7 @@ class MessageBox extends React.Component{
     Gets the last 10 calculations from the server.
     */
     getMessages(){
-        fetch( "/backend/getLast10Calculations" )
+        fetch( "/CalculatorAPI/getLast10Calculations" )
             .then( response => response.json() )
             .then( result => {
                 if( result.error ){

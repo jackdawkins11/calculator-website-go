@@ -56,12 +56,12 @@ func main() {
 		fmt.Println("Couldn't ping db")
 	}
 
-	http.HandleFunc("/backend/StartSession", StartSession)
-	http.HandleFunc("/backend/CreateAccount", CreateAccount)
-	http.HandleFunc("/backend/CheckSession", CheckSession)
-	http.HandleFunc("/backend/EndSession", EndSession)
-	http.HandleFunc("/backend/AddCalculation", AddCalculation)
-	http.HandleFunc("/backend/getLast10Calculations", getLast10Calculations)
+	http.HandleFunc("/CalculatorAPI/StartSession", StartSession)
+	http.HandleFunc("/CalculatorAPI/CreateAccount", CreateAccount)
+	http.HandleFunc("/CalculatorAPI/CheckSession", CheckSession)
+	http.HandleFunc("/CalculatorAPI/EndSession", EndSession)
+	http.HandleFunc("/CalculatorAPI/AddCalculation", AddCalculation)
+	http.HandleFunc("/CalculatorAPI/getLast10Calculations", getLast10Calculations)
 
 	fs := http.FileServer(http.Dir("./static/dist"))
 	http.Handle("/", fs)

@@ -1,4 +1,4 @@
-'use strict';
+import React from 'react'
 
 /*
 Renders a div containing the input element

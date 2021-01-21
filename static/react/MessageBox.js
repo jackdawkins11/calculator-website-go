@@ -1,4 +1,4 @@
-'use strict';
+import React from 'react'
 
 /*
 The following 2 functions render inner parts

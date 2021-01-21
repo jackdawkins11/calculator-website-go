@@ -1,3 +1,5 @@
+import React from 'react'
+import {render} from 'react-dom'
 import { AuthPage } from './AuthPage.js';
 import { HomePage } from './HomePage.js';
 
@@ -54,4 +56,4 @@ class App extends React.Component{
 
 
 
-ReactDOM.render( <App />, document.getElementById("root") );
+render( <App />, document.getElementById("root") );

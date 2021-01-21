@@ -63,7 +63,7 @@ func main() {
 	http.HandleFunc("/backend/AddCalculation", AddCalculation)
 	http.HandleFunc("/backend/getLast10Calculations", getLast10Calculations)
 
-	fs := http.FileServer(http.Dir("./static"))
+	fs := http.FileServer(http.Dir("./static/dist"))
 	http.Handle("/", fs)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
